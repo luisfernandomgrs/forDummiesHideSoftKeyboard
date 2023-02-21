@@ -28,14 +28,16 @@ public class MainActivity extends AppCompatActivity {
 		button_confirm.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				text_view_result.setText(edit_text_input.getText().toString().trim());
+				edit_text_input.setText(null);
 				closeKeyboard();
 			}
 		});
 	}
 
 	private void closeKeyboard() {
-		View view = this.getCurrentFocus();
-
+		View view = edit_text_input.getRootView();	//Force to get focus of Edit Text...
+													// this.getCurrentFocus();
 		if (view != null) {
 			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow( view.getWindowToken(), 0);
